@@ -87,7 +87,8 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
+  uint32_t last = HAL_GetTick();
+  const uint32_t period = 250;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -95,8 +96,11 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-      HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-      HAL_Delay(250);
+	    uint32_t now = HAL_GetTick();
+	    if ((now - last) >= period) {  // handles tick wraparound correctly
+	      last = now;
+	      HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+	    }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
