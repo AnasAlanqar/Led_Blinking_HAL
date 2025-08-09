@@ -97,8 +97,8 @@ int main(void)
 
       GPIOC->BSRR = (1 << (13 + 16)); // Reset PC13
       for (volatile uint32_t i = 0; i < 1600000; i++);
-      GPIOC->BSRR = (1 << 13);
-      for (volatile uint32_t i = 0; i < 1600000; i++); // crude delay
+      GPIOC->BSRR = (1 << 13); // set PC13
+      for (volatile uint32_t i = 0; i < 1600000; i++); 
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
